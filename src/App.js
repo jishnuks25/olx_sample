@@ -2,22 +2,24 @@
 import { useState } from 'react';
 import About from './Container/About';
 import Profile from './Container/Profile';
-
+import {Route, Routes, Link, useNavigate} from 'react-router-dom';
 function App() {
-  let component
-  const [State, setState] = useState()
-  if(State==='about'){
-    component= <About />
-  }
-  if(State==='profile'){
-    component=<Profile />
-  }
+  
+  const [State, setState] = useState('')
+  const history = useNavigate();
+ 
 
   return (
     <div className="App">
-      <button onClick={()=>setState('about')}>About</button>
-      <button onClick={()=>setState('profile')} >Profile</button>
-      {component}
+      
+        <button onClick={()=>history('/about')}>About Me</button>
+        <button onClick={()=>history('/profile')} >Profile</button>
+        <Routes>
+        <Route element={<About />} path='/about' />
+        <Route element={<Profile />} path='/profile' />
+      </Routes>
+      
+      
   
      
     </div>
